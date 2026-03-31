@@ -9,19 +9,19 @@ number:
 date:
 consensus: true
 v: 3
-area: AREA
-workgroup: WG Working Group
+# area: AREA
+# workgroup: WG Working Group
 keyword:
  - next generation
  - unicorn
  - sparkling distributed ledger
 venue:
-  group: WG
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: thibmeu/draft-bcp-civil
-  latest: https://example.com/LATEST
+#  group: WG
+#  type: Working Group
+#  mail: WG@example.com
+#  arch: https://example.com/WG
+  github: "thibmeu/draft-bcp-civil"
+  latest: "https://thibmeu.github.io/draft-bcp-civil/draft-meunier-bcp-civil.html"
 
 author:
  -
@@ -78,7 +78,7 @@ CDN traffic management systems MUST support open, standardized protocols for cli
 
 Operators SHOULD support configurable response tiers beyond
 block/allow (e.g., rate-limit, challenge, degrade).
-       
+
 Example: Suspected automation → reduce rate limit; confirmed
 abuse → block.
 
