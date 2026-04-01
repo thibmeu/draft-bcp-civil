@@ -19,11 +19,11 @@
 # Change the file extension to match the format (.xml for XML, etc...)
 #
 ###
-title: "Best practices for CDN traffic management"
-abbrev: "Best practices for CDN traffic management"
+title: "Principles for Web Traffic Management by Intermediaries"
+abbrev: "Web Traffic Management Principles"
 category: info
 
-docname: draft-meunier-bcp-civil-latest
+docname: draft-meunier-civil-latest
 submissiontype: IETF
 number:
 date:
@@ -32,9 +32,9 @@ v: 3
 area: AREA
 workgroup: WG Working Group
 keyword:
- - next generation
- - unicorn
- - sparkling distributed ledger
+ - web intermediaries
+ - traffic management
+ - security
 venue:
   group: WG
   type: Working Group
@@ -50,22 +50,26 @@ author:
     email: ot-ietf@thibault.uk
 
 normative:
+  RFC7230:
+  RFC7234:
+  RFC9309:
 
 informative:
+  RFC3040:
+  draft-illyes-aipref-cbcp: I-D.draft-illyes-aipref-cbcp
 
 ...
 
 --- abstract
 
-This document describes best practices for content delivery networks.
+This document describes principles for web intermediaries that balance security needs with open web accessibility.
 
 
 --- middle
 
 # Introduction
 
-Problem: CDNs sit between clients and origins
-Goal: Responsible traffic management without breaking the open web
+Web intermediaries such as content delivery networks, security services, and edge platforms increasingly implement traffic management systems to protect against abuse. As these systems become more sophisticated, there is growing concern about their impact on legitimate users and the open nature of the web. This document establishes principles for responsible traffic management that preserve web accessibility while maintaining necessary protections.
 
 
 # Conventions and Definitions
@@ -83,41 +87,55 @@ Passive signal:
 Graduated response:
 : Configurable action spectrum
 
-# Recommended best practices
+# Principles
 
-The following best practices should be followed and are already
-applied by a vast majority of large-scale reverse proxy on the Internet:
+The following principles should be followed by web intermediaries to balance security requirements with web openness:
 
-- list the subsection for easy consumption
+1. Intermediaries must classify traffic by specific behaviors, not client types
+2. Intermediaries must offer response options other than block or allow
+3. Intermediaries must favor open protocols for traffic management decisions
+4. Intermediaries must prefer cryptographically verifiable signals over passive fingerprinting
+5. Intermediaries should strive to follow published standards across their products
 
-## Protocol neutrality
+## Behavior-based classification
 
-CDN traffic management systems MUST support open, standardized protocols for client identification and access control. Implementations SHOULD avoid default configurations that rely on proprietary mechanisms or hardcoded allowlists.
+Intermediaries must classify traffic by specific behaviors, not client types.
+
+Classifications based on inferred client types (such as "bot" or "automated") are unreliable as the distinction between human and automated web browsing continues to blur. Modern web applications routinely use automation, and browsers themselves perform automated requests for prefetching, security scanning, and other legitimate purposes.
+
+Behavior-based classification focuses on observable actions that may indicate abuse, such as excessive request rates, unusual access patterns, or violation of website terms. This approach enables more precise enforcement while avoiding false positives based on client characteristics.
 
 ## Graduated enforcement
 
-Operators SHOULD support configurable response tiers beyond
-block/allow (e.g., rate-limit, challenge, degrade).
-       
-Example: Suspected automation → reduce rate limit; confirmed
-abuse → block.
+Intermediaries must default to allowing authenticated traffic, and offer response options other than block or allow.
+
+Binary blocking decisions create unnecessary friction for legitimate users while failing to address the spectrum of potentially unwanted behavior. Graduated responses allow intermediaries to apply appropriate restrictions based on confidence levels and threat severity.
+
+Effective responses include rate limiting, request delays, content modification, and verification challenges. These responses can be applied progressively based on behavior patterns rather than defaulting to complete blocking for ambiguous cases.
+
+## Protocol neutrality
+
+Intermediaries must favor open protocols for traffic management decisions.
+
+Traffic management decisions should be based on standardized mechanisms that any client can implement, rather than proprietary systems or curated lists. This allows legitimate automated clients to identify themselves appropriately and follow established conventions for access control.
+
+Open protocols enable website owners to express their preferences consistently across different intermediaries, rather than managing separate configurations for each vendor's proprietary system.
 
 ## Active signals over passive fingerprints
 
-Implementations SHOULD prefer cryptographically verifiable client credentials (e.g., HTTP Message Signatures, Privacy Pass tokens) over passive fingerprinting techniques (e.g., TLS characteristics, IP heuristics).
+Intermediaries must prefer client initiated signals over passive fingerprinting.
 
-## Behaviour-based classification
+Passive fingerprinting techniques create false positives for users sharing IP addresses, using privacy tools, or connecting from networks with unusual characteristics. These techniques also degrade over time as clients change behavior or implement countermeasures.
 
-Operators MUST classify traffic by defined behaviors (e.g.,
-"excessive request rate") rather than client type (e.g., "bot").
-
-Example: "Request rate >100/min from single IP" not "bot detected".
+Cryptographically verifiable credentials provide stronger assurance of client legitimacy while preserving user privacy. Examples include HTTP Message Signatures, Privacy Pass tokens, and other attestation mechanisms that prove client properties without revealing identifying information.
 
 ## Implementation consistency
 
-Cloudflare products should natively support and simplify adherence to the open web and bot standards that Cloudflare publishes and promotes externally. This is true of "CDN" products, but also of workers or zero trust.
+Intermediaries should strive to follow published standards across their products.
 
-Example: Cloudflare offers origins to serve content-signal allowing creators to specify preferences. We should make it easy to consume in Workers. Similarly, as Cloudflare CDN identify platforms, we should ensure that Workers and ZT identify themselves as well.
+Organizations that develop or promote web standards should implement those standards consistently across their product portfolio where feasible. This includes ensuring that different product lines respect the same protocols for content access, bot identification, and traffic management.
+
+While complete consistency across all standards may not be practical, intermediaries should prioritize consistency in areas where they have established public positions or published guidance. When intermediaries follow their own published standards uniformly, it demonstrates the viability of these approaches and encourages broader industry adoption.
 
 
 # Security Considerations
