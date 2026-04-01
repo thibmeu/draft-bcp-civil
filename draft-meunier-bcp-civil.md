@@ -1,24 +1,4 @@
 ---
-###
-# Internet-Draft Markdown Template
-#
-# Rename this file from draft-todo-yourname-protocol.md to get started.
-# Draft name format is "draft-<yourname>-<workgroup>-<name>.md".
-#
-# For initial setup, you only need to edit the first block of fields.
-# Only "title" needs to be changed; delete "abbrev" if your title is short.
-# Any other content can be edited, but be careful not to introduce errors.
-# Some fields will be set automatically during setup if they are unchanged.
-#
-# Don't include "-00" or "-latest" in the filename.
-# Labels in the form draft-<yourname>-<workgroup>-<name>-latest are used by
-# the tools to refer to the current version; see "docname" for example.
-#
-# This template uses kramdown-rfc: https://github.com/cabo/kramdown-rfc
-# You can replace the entire file if you prefer a different format.
-# Change the file extension to match the format (.xml for XML, etc...)
-#
-###
 title: "Principles for Web Traffic Management by Intermediaries"
 abbrev: "Web Traffic Management Principles"
 category: info
@@ -29,19 +9,19 @@ number:
 date:
 consensus: true
 v: 3
-area: AREA
-workgroup: WG Working Group
+# area: AREA
+# workgroup: WG Working Group
 keyword:
  - web intermediaries
  - traffic management
  - security
 venue:
-  group: WG
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: thibmeu/draft-bcp-civil
-  latest: https://example.com/LATEST
+#  group: WG
+#  type: Working Group
+#  mail: WG@example.com
+#  arch: https://example.com/WG
+  github: "thibmeu/draft-bcp-civil"
+  latest: "https://thibmeu.github.io/draft-bcp-civil/draft-meunier-bcp-civil.html"
 
 author:
  -
@@ -108,6 +88,7 @@ Behavior-based classification focuses on observable actions that may indicate ab
 
 ## Graduated enforcement
 
+<<<<<<< HEAD
 Intermediaries must default to allowing authenticated traffic, and offer response options other than block or allow.
 
 Binary blocking decisions create unnecessary friction for legitimate users while failing to address the spectrum of potentially unwanted behavior. Graduated responses allow intermediaries to apply appropriate restrictions based on confidence levels and threat severity.
@@ -123,6 +104,13 @@ Traffic management decisions should be based on standardized mechanisms that any
 When blocking or restricting access, intermediaries MUST use appropriate HTTP status codes as defined in {{RFC9110}}: 403 Forbidden for policy violations, 429 Too Many Requests for rate limiting, and 503 Service Unavailable for temporary restrictions. Response headers SHOULD provide actionable information about restrictions and recovery paths.
 
 Open protocols enable website owners to express their preferences consistently across different intermediaries, rather than managing separate configurations for each vendor's proprietary system.
+=======
+Operators SHOULD support configurable response tiers beyond
+block/allow (e.g., rate-limit, challenge, degrade).
+
+Example: Suspected automation → reduce rate limit; confirmed
+abuse → block.
+>>>>>>> 6aa28a81b0f28c81f8add332db787da5d7f3af20
 
 ## Active signals over passive fingerprints
 
