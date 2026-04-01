@@ -50,13 +50,14 @@ author:
     email: ot-ietf@thibault.uk
 
 normative:
-  RFC7230:
-  RFC7234:
-  RFC9309:
+  RFC9110:
+  RFC9111:
 
 informative:
   RFC3040:
+  RFC9309:
   draft-illyes-aipref-cbcp: I-D.draft-illyes-aipref-cbcp
+  draft-ietf-httpapi-ratelimit-headers: I-D.draft-ietf-httpapi-ratelimit-headers
 
 ...
 
@@ -111,13 +112,15 @@ Intermediaries must default to allowing authenticated traffic, and offer respons
 
 Binary blocking decisions create unnecessary friction for legitimate users while failing to address the spectrum of potentially unwanted behavior. Graduated responses allow intermediaries to apply appropriate restrictions based on confidence levels and threat severity.
 
-Effective responses include rate limiting, request delays, content modification, and verification challenges. These responses can be applied progressively based on behavior patterns rather than defaulting to complete blocking for ambiguous cases.
+Effective responses include rate limiting (HTTP 429 status code), request delays (HTTP 503 with Retry-After), content modification, and verification challenges. Rate limiting implementations SHOULD follow emerging standards such as {{draft-ietf-httpapi-ratelimit-headers}} for consistent client communication. These responses can be applied progressively based on behavior patterns rather than defaulting to complete blocking for ambiguous cases.
 
 ## Protocol neutrality
 
-Intermediaries must favor open protocols for traffic management decisions.
+Intermediaries must favor open protocols for traffic management decisions and communicate responses using standard HTTP semantics.
 
 Traffic management decisions should be based on standardized mechanisms that any client can implement, rather than proprietary systems or curated lists. This allows legitimate automated clients to identify themselves appropriately and follow established conventions for access control.
+
+When blocking or restricting access, intermediaries MUST use appropriate HTTP status codes as defined in {{RFC9110}}: 403 Forbidden for policy violations, 429 Too Many Requests for rate limiting, and 503 Service Unavailable for temporary restrictions. Response headers SHOULD provide actionable information about restrictions and recovery paths.
 
 Open protocols enable website owners to express their preferences consistently across different intermediaries, rather than managing separate configurations for each vendor's proprietary system.
 
