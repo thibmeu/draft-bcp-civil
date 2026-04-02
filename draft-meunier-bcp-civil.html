@@ -4,15 +4,16 @@
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>Best practices for CDN traffic management</title>
+<title>Principles for Web Traffic Management by Intermediaries</title>
 <meta content="Thibault Meunier" name="author">
 <meta content="
-       This document describes best practices for content delivery networks. 
+       This document describes principles for web intermediaries that balance security
+needs with open web accessibility. 
     " name="description">
 <meta content="xml2rfc 3.32.0" name="generator">
-<meta content="next generation" name="keyword">
-<meta content="unicorn" name="keyword">
-<meta content="sparkling distributed ledger" name="keyword">
+<meta content="web intermediaries" name="keyword">
+<meta content="traffic management" name="keyword">
+<meta content="security" name="keyword">
 <meta content="draft-meunier-bcp-civil-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.32.0
@@ -1046,12 +1047,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <table class="ears">
 <thead><tr>
 <td class="left">Internet-Draft</td>
-<td class="center">Best practices for CDN traffic managemen</td>
-<td class="right">March 2026</td>
+<td class="center">Web Traffic Management Principles</td>
+<td class="right">April 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Meunier</td>
-<td class="center">Expires 2 October 2026</td>
+<td class="center">Expires 4 October 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1059,17 +1060,17 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <div id="internal-metadata" class="document-information">
 <dl id="identifiers">
 <dt class="label-workgroup">Workgroup:</dt>
-<dd class="workgroup">WG Working Group</dd>
+<dd class="workgroup">Network Working Group</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
 <dd class="internet-draft">draft-meunier-bcp-civil-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-03-31" class="published">31 March 2026</time>
+<time datetime="2026-04-02" class="published">2 April 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-10-02">2 October 2026</time></dd>
+<dd class="expires"><time datetime="2026-10-04">4 October 2026</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1079,10 +1080,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </dd>
 </dl>
 </div>
-<h1 id="title">Best practices for CDN traffic management</h1>
+<h1 id="title">Principles for Web Traffic Management by Intermediaries</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document describes best practices for content delivery networks.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document describes principles for web intermediaries that balance security
+needs with open web accessibility.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1090,14 +1092,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
       </h2>
 <p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
 <p id="section-note.1-2">
-        The latest revision of this draft can be found at <span><a href="https://example.com/LATEST">https://example.com/LATEST</a></span>.
+        The latest revision of this draft can be found at <span><a href="https://thibmeu.github.io/draft-bcp-civil/draft-meunier-bcp-civil.html">https://thibmeu.github.io/draft-bcp-civil/draft-meunier-bcp-civil.html</a></span>.
         Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-meunier-bcp-civil/">https://datatracker.ietf.org/doc/draft-meunier-bcp-civil/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
-<p id="section-note.1-3">
-        Discussion of this document takes place on the
-        WG Working Group mailing list (<span><a href="mailto:WG@example.com">mailto:WG@example.com</a></span>),
-        which is archived at <span><a href="https://example.com/WG">https://example.com/WG</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
-<p id="section-note.1-4">Source for this draft and an issue tracker can be found at
-        <span><a href="https://github.com/thibmeu/draft-bcp-civil">https://github.com/thibmeu/draft-bcp-civil</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
+<p id="section-note.1-3">Source for this draft and an issue tracker can be found at
+        <span><a href="https://github.com/thibmeu/draft-bcp-civil">https://github.com/thibmeu/draft-bcp-civil</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1118,7 +1116,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 2 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 4 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1154,19 +1152,19 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-recommended-best-practices" class="internal xref">Recommended best practices</a></p>
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-principles" class="internal xref">Principles</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-protocol-neutrality" class="internal xref">Protocol neutrality</a></p>
+                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-behavior-based-classificati" class="internal xref">Behavior-based classification</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
                 <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-graduated-enforcement" class="internal xref">Graduated enforcement</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
-                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-active-signals-over-passive" class="internal xref">Active signals over passive fingerprints</a></p>
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-protocol-neutrality" class="internal xref">Protocol neutrality</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
-                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-behaviour-based-classificat" class="internal xref">Behaviour-based classification</a></p>
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-active-signals-over-passive" class="internal xref">Active signals over passive fingerprints</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5">
                 <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="auto internal xref">3.5</a>.  <a href="#name-implementation-consistency" class="internal xref">Implementation consistency</a></p>
@@ -1180,7 +1178,15 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
@@ -1197,8 +1203,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">Problem: CDNs sit between clients and origins
-Goal: Responsible traffic management without breaking the open web<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-1">Web intermediaries such as content delivery networks, security services, and
+edge platforms increasingly implement traffic management systems to protect
+against abuse. As these systems become more sophisticated, there is growing
+concern about their impact on legitimate users and the open nature of the web.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">This document establishes principles for responsible traffic management that
+preserve web accessibility while maintaining necessary protections.<a href="#section-1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1230,24 +1240,47 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 </dl>
 </section>
 </div>
-<div id="recommended-best-practices">
+<div id="principles">
 <section id="section-3">
-      <h2 id="name-recommended-best-practices">
-<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-recommended-best-practices" class="section-name selfRef">Recommended best practices</a>
+      <h2 id="name-principles">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-principles" class="section-name selfRef">Principles</a>
       </h2>
-<p id="section-3-1">The following best practices should be followed and are already
-applied by a vast majority of large-scale reverse proxy on the Internet:<a href="#section-3-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-3-2.1">
-          <p id="section-3-2.1.1">list the subsection for easy consumption<a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
+<p id="section-3-1">The following principles should be followed by web intermediaries to balance\
+security requirements with web openness:<a href="#section-3-1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-3-2">
+<li id="section-3-2.1">
+          <p id="section-3-2.1.1">Intermediaries must classify traffic by specific behaviors, not client types<a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
 </li>
-      </ul>
-<div id="protocol-neutrality">
+        <li id="section-3-2.2">
+          <p id="section-3-2.2.1">Intermediaries must offer response options other than block or allow<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-3-2.3">
+          <p id="section-3-2.3.1">Intermediaries must favor open protocols for traffic management decisions<a href="#section-3-2.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-3-2.4">
+          <p id="section-3-2.4.1">Intermediaries must prefer cryptographically verifiable signals over passive
+fingerprinting<a href="#section-3-2.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-3-2.5">
+          <p id="section-3-2.5.1">Intermediaries should strive to follow published standards across their
+products<a href="#section-3-2.5.1" class="pilcrow">¶</a></p>
+</li>
+      </ol>
+<div id="behavior-based-classification">
 <section id="section-3.1">
-        <h3 id="name-protocol-neutrality">
-<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-protocol-neutrality" class="section-name selfRef">Protocol neutrality</a>
+        <h3 id="name-behavior-based-classificati">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-behavior-based-classificati" class="section-name selfRef">Behavior-based classification</a>
         </h3>
-<p id="section-3.1-1">CDN traffic management systems <span class="bcp14">MUST</span> support open, standardized protocols for client identification and access control. Implementations <span class="bcp14">SHOULD</span> avoid default configurations that rely on proprietary mechanisms or hardcoded allowlists.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-1">Intermediaries must classify traffic by specific behaviors, not client types.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">Classifications based on inferred client types (such as "bot" or "automated")
+are unreliable as the distinction between human and automated web browsing
+continues to blur. Modern web applications routinely use automation, and
+browsers themselves perform automated requests for prefetching, security
+scanning, and other legitimate purposes.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1-3">Behavior-based classification focuses on observable actions that may indicate
+abuse, such as excessive request rates, unusual access patterns, or violation of
+website terms. This approach enables more precise enforcement while avoiding
+false positives based on client characteristics.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="graduated-enforcement">
@@ -1255,28 +1288,55 @@ applied by a vast majority of large-scale reverse proxy on the Internet:<a href=
         <h3 id="name-graduated-enforcement">
 <a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-graduated-enforcement" class="section-name selfRef">Graduated enforcement</a>
         </h3>
-<p id="section-3.2-1">Operators <span class="bcp14">SHOULD</span> support configurable response tiers beyond
-block/allow (e.g., rate-limit, challenge, degrade).<a href="#section-3.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.2-2">Example: Suspected automation → reduce rate limit; confirmed
-abuse → block.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.2-1">Intermediaries must default to allowing authenticated traffic, and offer
+response options other than block or allow.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-2">Binary blocking decisions create unnecessary friction for legitimate users while
+failing to address the spectrum of potentially unwanted behavior. Graduated
+responses allow intermediaries to apply appropriate restrictions based on
+confidence levels and threat severity.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.2-3">Effective responses include rate limiting (HTTP 429 status code), request delays
+(HTTP 503 with Retry-After), content modification, and verification challenges.
+Rate limiting implementations <span class="bcp14">SHOULD</span> follow emerging standards such as
+<span>[<a href="#draft-ietf-httpapi-ratelimit-headers" class="cite xref">draft-ietf-httpapi-ratelimit-headers</a>]</span> for consistent client communication.
+These responses can be applied progressively based on behavior patterns rather
+than defaulting to complete blocking for ambiguous cases.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="protocol-neutrality">
+<section id="section-3.3">
+        <h3 id="name-protocol-neutrality">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-protocol-neutrality" class="section-name selfRef">Protocol neutrality</a>
+        </h3>
+<p id="section-3.3-1">Intermediaries must favor open protocols for traffic management decisions and
+communicate responses using standard HTTP semantics.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2">Traffic management decisions should be based on standardized mechanisms that any
+client can implement, rather than proprietary systems or curated lists. This
+allows legitimate automated clients to identify themselves appropriately and
+follow established conventions for access control.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.3-3">When blocking or restricting access, intermediaries <span class="bcp14">MUST</span> use appropriate HTTP
+status codes as defined in <span>[<a href="#RFC9110" class="cite xref">RFC9110</a>]</span>: 403 Forbidden for policy violations, 429
+Too Many Requests for rate limiting, and 503 Service Unavailable for temporary
+restrictions. Response headers <span class="bcp14">SHOULD</span> provide actionable information about
+restrictions and recovery paths.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
+<p id="section-3.3-4">Open protocols enable website owners to express their preferences consistently
+across different intermediaries, rather than managing separate configurations
+for each vendor's proprietary system.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="active-signals-over-passive-fingerprints">
-<section id="section-3.3">
-        <h3 id="name-active-signals-over-passive">
-<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-active-signals-over-passive" class="section-name selfRef">Active signals over passive fingerprints</a>
-        </h3>
-<p id="section-3.3-1">Implementations <span class="bcp14">SHOULD</span> prefer cryptographically verifiable client credentials (e.g., HTTP Message Signatures, Privacy Pass tokens) over passive fingerprinting techniques (e.g., TLS characteristics, IP heuristics).<a href="#section-3.3-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="behaviour-based-classification">
 <section id="section-3.4">
-        <h3 id="name-behaviour-based-classificat">
-<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-behaviour-based-classificat" class="section-name selfRef">Behaviour-based classification</a>
+        <h3 id="name-active-signals-over-passive">
+<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-active-signals-over-passive" class="section-name selfRef">Active signals over passive fingerprints</a>
         </h3>
-<p id="section-3.4-1">Operators <span class="bcp14">MUST</span> classify traffic by defined behaviors (e.g.,
-"excessive request rate") rather than client type (e.g., "bot").<a href="#section-3.4-1" class="pilcrow">¶</a></p>
-<p id="section-3.4-2">Example: "Request rate &gt;100/min from single IP" not "bot detected".<a href="#section-3.4-2" class="pilcrow">¶</a></p>
+<p id="section-3.4-1">Intermediaries must prefer client initiated signals over passive fingerprinting.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.4-2">Passive fingerprinting techniques create false positives for users sharing IP
+addresses, using privacy tools, or connecting from networks with unusual
+characteristics. These techniques also degrade over time as clients change
+behavior or implement countermeasures.<a href="#section-3.4-2" class="pilcrow">¶</a></p>
+<p id="section-3.4-3">Cryptographically verifiable credentials provide stronger assurance of client
+legitimacy while preserving user privacy. Examples include HTTP Message
+Signatures, Privacy Pass tokens, and other attestation mechanisms that prove
+client properties without revealing identifying information.<a href="#section-3.4-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="implementation-consistency">
@@ -1284,8 +1344,17 @@ abuse → block.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
         <h3 id="name-implementation-consistency">
 <a href="#section-3.5" class="section-number selfRef">3.5. </a><a href="#name-implementation-consistency" class="section-name selfRef">Implementation consistency</a>
         </h3>
-<p id="section-3.5-1">Cloudflare products should natively support and simplify adherence to the open web and bot standards that Cloudflare publishes and promotes externally. This is true of "CDN" products, but also of workers or zero trust.<a href="#section-3.5-1" class="pilcrow">¶</a></p>
-<p id="section-3.5-2">Example: Cloudflare offers origins to serve content-signal allowing creators to specify preferences. We should make it easy to consume in Workers. Similarly, as Cloudflare CDN identify platforms, we should ensure that Workers and ZT identify themselves as well.<a href="#section-3.5-2" class="pilcrow">¶</a></p>
+<p id="section-3.5-1">Intermediaries should strive to follow published standards across their
+products.<a href="#section-3.5-1" class="pilcrow">¶</a></p>
+<p id="section-3.5-2">Organizations that develop or promote web standards should implement those
+standards consistently across their product portfolio where feasible. This
+includes ensuring that different product lines respect the same protocols for
+content access, bot identification, and traffic management.<a href="#section-3.5-2" class="pilcrow">¶</a></p>
+<p id="section-3.5-3">While complete consistency across all standards may not be practical,
+intermediaries should prioritize consistency in areas where they have
+established public positions or published guidance. When intermediaries follow
+their own published standards uniformly, it demonstrates the viability of these
+approaches and encourages broader industry adoption.<a href="#section-3.5-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1306,21 +1375,61 @@ abuse → block.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
 <p id="section-5-1">This document has no IANA actions.<a href="#section-5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="sec-normative-references">
+<div id="sec-combined-references">
 <section id="section-6">
-      <h2 id="name-normative-references">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+      <h2 id="name-references">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
+<div id="sec-normative-references">
+<section id="section-6.1">
+        <h3 id="name-normative-references">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
-    <dd>
+        <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC9110">[RFC9110]</dt>
+        <dd>
+<span class="refAuthor">Fielding, R., Ed.</span>, <span class="refAuthor">Nottingham, M., Ed.</span>, and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="seriesInfo">STD 97</span>, <span class="seriesInfo">RFC 9110</span>, <span class="seriesInfo">DOI 10.17487/RFC9110</span>, <time datetime="2022-06" class="refDate">June 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9110">https://www.rfc-editor.org/rfc/rfc9110</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9111">[RFC9111]</dt>
+      <dd>
+<span class="refAuthor">Fielding, R., Ed.</span>, <span class="refAuthor">Nottingham, M., Ed.</span>, and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"HTTP Caching"</span>, <span class="seriesInfo">STD 98</span>, <span class="seriesInfo">RFC 9111</span>, <span class="seriesInfo">DOI 10.17487/RFC9111</span>, <time datetime="2022-06" class="refDate">June 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9111">https://www.rfc-editor.org/rfc/rfc9111</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 </dl>
+</section>
+</div>
+<div id="sec-informative-references">
+<section id="section-6.2">
+        <h3 id="name-informative-references">
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="draft-ietf-httpapi-ratelimit-headers">[draft-ietf-httpapi-ratelimit-headers]</dt>
+        <dd>
+<span class="refAuthor">Polli, R.</span>, <span class="refAuthor">Ruiz, A. M.</span>, and <span class="refAuthor">D. Miller</span>, <span class="refTitle">"RateLimit header fields for HTTP"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpapi-ratelimit-headers-10</span>, <time datetime="2025-09-27" class="refDate">27 September 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpapi-ratelimit-headers-10">https://datatracker.ietf.org/doc/html/draft-ietf-httpapi-ratelimit-headers-10</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="draft-illyes-aipref-cbcp">[draft-illyes-aipref-cbcp]</dt>
+        <dd>
+<span class="refAuthor">Illyes, G.</span>, <span class="refAuthor">Kühlewind, M.</span>, and <span class="refAuthor">K. Aj</span>, <span class="refTitle">"Crawler best practices"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-illyes-aipref-cbcp-02</span>, <time datetime="2025-10-07" class="refDate">7 October 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-illyes-aipref-cbcp-02">https://datatracker.ietf.org/doc/html/draft-illyes-aipref-cbcp-02</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC3040">[RFC3040]</dt>
+        <dd>
+<span class="refAuthor">Cooper, I.</span>, <span class="refAuthor">Melve, I.</span>, and <span class="refAuthor">G. Tomlinson</span>, <span class="refTitle">"Internet Web Replication and Caching Taxonomy"</span>, <span class="seriesInfo">RFC 3040</span>, <span class="seriesInfo">DOI 10.17487/RFC3040</span>, <time datetime="2001-01" class="refDate">January 2001</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3040">https://www.rfc-editor.org/rfc/rfc3040</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9309">[RFC9309]</dt>
+      <dd>
+<span class="refAuthor">Koster, M.</span>, <span class="refAuthor">Illyes, G.</span>, <span class="refAuthor">Zeller, H.</span>, and <span class="refAuthor">L. Sassman</span>, <span class="refTitle">"Robots Exclusion Protocol"</span>, <span class="seriesInfo">RFC 9309</span>, <span class="seriesInfo">DOI 10.17487/RFC9309</span>, <time datetime="2022-09" class="refDate">September 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9309">https://www.rfc-editor.org/rfc/rfc9309</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
 </section>
 </div>
 <div id="acknowledgments">
