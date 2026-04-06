@@ -4,8 +4,8 @@
 
 Network Working Group                                         T. Meunier
 Internet-Draft                                                Cloudflare
-Intended status: Informational                              2 April 2026
-Expires: 4 October 2026
+Intended status: Informational                              6 April 2026
+Expires: 8 October 2026
 
 
         Principles for Web Traffic Management by Intermediaries
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 October 2026.
+   This Internet-Draft will expire on 8 October 2026.
 
 Copyright Notice
 
@@ -68,7 +68,7 @@ Table of Contents
      3.2.  Graduated enforcement
      3.3.  Protocol neutrality
      3.4.  Active signals over passive fingerprints
-     3.5.  Implementation consistency
+     3.5.  Implementation transparency
    4.  Security Considerations
    5.  IANA Considerations
    6.  References
@@ -105,6 +105,10 @@ Table of Contents
 
    Graduated response:  Configurable action spectrum
 
+   Intermediary:  As defined in Section 3.7 of [RFC9110], an HTTP
+      intermediary is a proxy, gateway, or tunnel that acts on behalf of
+      either the client or server.
+
 3.  Principles
 
    The following principles should be followed by web intermediaries to
@@ -122,8 +126,8 @@ Table of Contents
    4.  Intermediaries must prefer cryptographically verifiable signals
        over passive fingerprinting
 
-   5.  Intermediaries should strive to follow published standards across
-       their products
+   5.  Intermediaries must document where their services diverge from
+       published standards.
 
 3.1.  Behavior-based classification
 
@@ -200,23 +204,20 @@ Table of Contents
    mechanisms that prove client properties without revealing identifying
    information.
 
-3.5.  Implementation consistency
+3.5.  Implementation transparency
 
-   Intermediaries should strive to follow published standards across
-   their products.
+   Intermediaries must document where their services diverge from
+   published standards.
 
-   Organizations that develop or promote web standards should implement
-   those standards consistently across their product portfolio where
-   feasible.  This includes ensuring that different product lines
-   respect the same protocols for content access, bot identification,
-   and traffic management.
+   Intermediaries that develop or promote standards operate multiple
+   services that may implement those standards differently.  An
+   intermediary that promotes a standard should disclose where its
+   services do not follow it.
 
-   While complete consistency across all standards may not be practical,
-   intermediaries should prioritize consistency in areas where they have
-   established public positions or published guidance.  When
-   intermediaries follow their own published standards uniformly, it
-   demonstrates the viability of these approaches and encourages broader
-   industry adoption.
+   While documenting every deviation may not be practical,
+   intermediaries should prioritize disclosure in areas where they have
+   established published guidance.  Consistent disclosure demonstrates
+   accountability and encourages broader industry adoption.
 
 4.  Security Considerations
 
@@ -264,11 +265,6 @@ Table of Contents
               illyes-aipref-cbcp-02, 7 October 2025,
               <https://datatracker.ietf.org/doc/html/draft-illyes-
               aipref-cbcp-02>.
-
-   [RFC3040]  Cooper, I., Melve, I., and G. Tomlinson, "Internet Web
-              Replication and Caching Taxonomy", RFC 3040,
-              DOI 10.17487/RFC3040, January 2001,
-              <https://www.rfc-editor.org/rfc/rfc3040>.
 
    [RFC9309]  Koster, M., Illyes, G., Zeller, H., and L. Sassman,
               "Robots Exclusion Protocol", RFC 9309,

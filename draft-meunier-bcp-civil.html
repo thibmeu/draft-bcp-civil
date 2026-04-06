@@ -1052,7 +1052,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Meunier</td>
-<td class="center">Expires 4 October 2026</td>
+<td class="center">Expires 8 October 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1065,12 +1065,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-meunier-bcp-civil-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-04-02" class="published">2 April 2026</time>
+<time datetime="2026-04-06" class="published">6 April 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-10-04">4 October 2026</time></dd>
+<dd class="expires"><time datetime="2026-10-08">8 October 2026</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1116,7 +1116,7 @@ needs with open web accessibility.<a href="#section-abstract-1" class="pilcrow">
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 4 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1167,7 +1167,7 @@ needs with open web accessibility.<a href="#section-abstract-1" class="pilcrow">
                 <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-active-signals-over-passive" class="internal xref">Active signals over passive fingerprints</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5">
-                <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="auto internal xref">3.5</a>.  <a href="#name-implementation-consistency" class="internal xref">Implementation consistency</a></p>
+                <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="auto internal xref">3.5</a>.  <a href="#name-implementation-transparency" class="internal xref">Implementation transparency</a></p>
 </li>
             </ul>
 </li>
@@ -1236,6 +1236,12 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <dd style="margin-left: 1.5em" id="section-2-3.6">
           <p id="section-2-3.6.1">Configurable action spectrum<a href="#section-2-3.6.1" class="pilcrow">¶</a></p>
 </dd>
+        <dd class="break"></dd>
+<dt id="section-2-3.7">Intermediary:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.8">
+          <p id="section-2-3.8.1">As defined in <span><a href="https://rfc-editor.org/rfc/rfc9110#section-3.7" class="relref">Section 3.7</a> of [<a href="#RFC9110" class="cite xref">RFC9110</a>]</span>, an HTTP intermediary is a proxy,
+gateway, or tunnel that acts on behalf of either the client or server.<a href="#section-2-3.8.1" class="pilcrow">¶</a></p>
+</dd>
       <dd class="break"></dd>
 </dl>
 </section>
@@ -1262,8 +1268,8 @@ security requirements with web openness:<a href="#section-3-1" class="pilcrow">�
 fingerprinting<a href="#section-3-2.4.1" class="pilcrow">¶</a></p>
 </li>
         <li id="section-3-2.5">
-          <p id="section-3-2.5.1">Intermediaries should strive to follow published standards across their
-products<a href="#section-3-2.5.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.5.1">Intermediaries must document where their services diverge from published
+standards.<a href="#section-3-2.5.1" class="pilcrow">¶</a></p>
 </li>
       </ol>
 <div id="behavior-based-classification">
@@ -1339,22 +1345,20 @@ Signatures, Privacy Pass tokens, and other attestation mechanisms that prove
 client properties without revealing identifying information.<a href="#section-3.4-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="implementation-consistency">
+<div id="implementation-transparency">
 <section id="section-3.5">
-        <h3 id="name-implementation-consistency">
-<a href="#section-3.5" class="section-number selfRef">3.5. </a><a href="#name-implementation-consistency" class="section-name selfRef">Implementation consistency</a>
+        <h3 id="name-implementation-transparency">
+<a href="#section-3.5" class="section-number selfRef">3.5. </a><a href="#name-implementation-transparency" class="section-name selfRef">Implementation transparency</a>
         </h3>
-<p id="section-3.5-1">Intermediaries should strive to follow published standards across their
-products.<a href="#section-3.5-1" class="pilcrow">¶</a></p>
-<p id="section-3.5-2">Organizations that develop or promote web standards should implement those
-standards consistently across their product portfolio where feasible. This
-includes ensuring that different product lines respect the same protocols for
-content access, bot identification, and traffic management.<a href="#section-3.5-2" class="pilcrow">¶</a></p>
-<p id="section-3.5-3">While complete consistency across all standards may not be practical,
-intermediaries should prioritize consistency in areas where they have
-established public positions or published guidance. When intermediaries follow
-their own published standards uniformly, it demonstrates the viability of these
-approaches and encourages broader industry adoption.<a href="#section-3.5-3" class="pilcrow">¶</a></p>
+<p id="section-3.5-1">Intermediaries must document where their services diverge from published
+standards.<a href="#section-3.5-1" class="pilcrow">¶</a></p>
+<p id="section-3.5-2">Intermediaries that develop or promote standards operate multiple services that
+may implement those standards differently. An intermediary that promotes a
+standard should disclose where its services do not follow it.<a href="#section-3.5-2" class="pilcrow">¶</a></p>
+<p id="section-3.5-3">While documenting every deviation may not be practical, intermediaries should
+prioritize disclosure in areas where they have established published guidance.
+Consistent disclosure demonstrates accountability and encourages broader
+industry adoption.<a href="#section-3.5-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1418,10 +1422,6 @@ approaches and encourages broader industry adoption.<a href="#section-3.5-3" cla
 <dt id="draft-illyes-aipref-cbcp">[draft-illyes-aipref-cbcp]</dt>
         <dd>
 <span class="refAuthor">Illyes, G.</span>, <span class="refAuthor">Kühlewind, M.</span>, and <span class="refAuthor">K. Aj</span>, <span class="refTitle">"Crawler best practices"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-illyes-aipref-cbcp-02</span>, <time datetime="2025-10-07" class="refDate">7 October 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-illyes-aipref-cbcp-02">https://datatracker.ietf.org/doc/html/draft-illyes-aipref-cbcp-02</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC3040">[RFC3040]</dt>
-        <dd>
-<span class="refAuthor">Cooper, I.</span>, <span class="refAuthor">Melve, I.</span>, and <span class="refAuthor">G. Tomlinson</span>, <span class="refTitle">"Internet Web Replication and Caching Taxonomy"</span>, <span class="seriesInfo">RFC 3040</span>, <span class="seriesInfo">DOI 10.17487/RFC3040</span>, <time datetime="2001-01" class="refDate">January 2001</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3040">https://www.rfc-editor.org/rfc/rfc3040</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9309">[RFC9309]</dt>
       <dd>
