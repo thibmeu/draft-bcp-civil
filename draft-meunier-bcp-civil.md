@@ -34,7 +34,6 @@ normative:
   RFC9111:
 
 informative:
-  RFC3040:
   RFC9309:
   draft-illyes-aipref-cbcp: I-D.draft-illyes-aipref-cbcp
   draft-ietf-httpapi-ratelimit-headers: I-D.draft-ietf-httpapi-ratelimit-headers
@@ -75,6 +74,10 @@ Passive signal:
 Graduated response:
 : Configurable action spectrum
 
+Intermediary:
+: As defined in {{Section 3.7 of RFC9110}}, an HTTP intermediary is a proxy,
+  gateway, or tunnel that acts on behalf of either the client or server.
+
 # Principles
 
 The following principles should be followed by web intermediaries to balance\
@@ -85,8 +88,8 @@ security requirements with web openness:
 3. Intermediaries must favor open protocols for traffic management decisions
 4. Intermediaries must prefer cryptographically verifiable signals over passive
    fingerprinting
-5. Intermediaries should strive to follow published standards across their
-   products
+5. Intermediaries must document where their services diverge from published
+   standards.
 
 ## Behavior-based classification
 
@@ -154,21 +157,19 @@ legitimacy while preserving user privacy. Examples include HTTP Message
 Signatures, Privacy Pass tokens, and other attestation mechanisms that prove
 client properties without revealing identifying information.
 
-## Implementation consistency
+## Implementation transparency
 
-Intermediaries should strive to follow published standards across their
-products.
+Intermediaries must document where their services diverge from published
+standards.
 
-Organizations that develop or promote web standards should implement those
-standards consistently across their product portfolio where feasible. This
-includes ensuring that different product lines respect the same protocols for
-content access, bot identification, and traffic management.
+Intermediaries that develop or promote standards operate multiple services that
+may implement those standards differently. An intermediary that promotes a
+standard should disclose where its services do not follow it.
 
-While complete consistency across all standards may not be practical,
-intermediaries should prioritize consistency in areas where they have
-established public positions or published guidance. When intermediaries follow
-their own published standards uniformly, it demonstrates the viability of these
-approaches and encourages broader industry adoption.
+While documenting every deviation may not be practical, intermediaries should
+prioritize disclosure in areas where they have established published guidance.
+Consistent disclosure demonstrates accountability and encourages broader
+industry adoption.
 
 
 # Security Considerations
