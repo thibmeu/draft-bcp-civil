@@ -4,8 +4,8 @@
 
 Network Working Group                                         T. Meunier
 Internet-Draft                                                Cloudflare
-Intended status: Informational                              6 April 2026
-Expires: 8 October 2026
+Intended status: Informational                             12 April 2026
+Expires: 14 October 2026
 
 
         Principles for Web Traffic Management by Intermediaries
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 October 2026.
+   This Internet-Draft will expire on 14 October 2026.
 
 Copyright Notice
 
@@ -262,9 +262,9 @@ Table of Contents
    [draft-illyes-aipref-cbcp]
               Illyes, G., Kühlewind, M., and K. Aj, "Crawler best
               practices", Work in Progress, Internet-Draft, draft-
-              illyes-aipref-cbcp-02, 7 October 2025,
+              illyes-aipref-cbcp-04, 9 April 2026,
               <https://datatracker.ietf.org/doc/html/draft-illyes-
-              aipref-cbcp-02>.
+              aipref-cbcp-04>.
 
    [RFC9309]  Koster, M., Illyes, G., Zeller, H., and L. Sassman,
               "Robots Exclusion Protocol", RFC 9309,
