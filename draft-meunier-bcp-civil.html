@@ -1220,8 +1220,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <span class="break"></span><dl class="dlParallel" id="section-2-3">
         <dt id="section-2-3.1">Active signal:</dt>
         <dd style="margin-left: 1.5em" id="section-2-3.2">
-          <p id="section-2-3.2.1">Client property positively asserted by the client or its operator, and
-verifiable by the intermediary<a href="#section-2-3.2.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.2.1">Client property asserted by the client or its operator, verifiable by the
+intermediary, and not assertable by an unrelated party<a href="#section-2-3.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-3.3">Passive signal:</dt>
@@ -1262,8 +1262,7 @@ identity<a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
           <p id="section-3-2.3.1">Intermediaries must favor open protocols for traffic management decisions<a href="#section-3-2.3.1" class="pilcrow">¶</a></p>
 </li>
         <li id="section-3-2.4">
-          <p id="section-3-2.4.1">Intermediaries must prefer positively identifiable signals over passive
-fingerprinting<a href="#section-3-2.4.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.4.1">Intermediaries must prefer active signals over passive signals<a href="#section-3-2.4.1" class="pilcrow">¶</a></p>
 </li>
         <li id="section-3-2.5">
           <p id="section-3-2.5.1">Intermediaries must document where their services diverge from published
@@ -1336,15 +1335,14 @@ for each vendor's proprietary system.<a href="#section-3.3-4" class="pilcrow">¶
         <h3 id="name-active-signals-over-passive">
 <a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-active-signals-over-passive" class="section-name selfRef">Active signals over passive fingerprints</a>
         </h3>
-<p id="section-3.4-1">Intermediaries must prefer positively identifiable signals over passive
-fingerprinting.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
-<p id="section-3.4-2">Passive fingerprinting techniques create false positives for users sharing IP
-addresses, using privacy tools, or connecting from networks with unusual
-characteristics. These techniques also degrade over time as clients change
-behavior or implement countermeasures.<a href="#section-3.4-2" class="pilcrow">¶</a></p>
+<p id="section-3.4-1">Intermediaries must prefer active signals over passive signals.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.4-2">Passive fingerprinting techniques identify users without their participation, and
+create false positives for users sharing IP addresses, using privacy tools, or
+connecting from networks with unusual characteristics. These techniques also
+degrade over time as clients change behavior or implement countermeasures.<a href="#section-3.4-2" class="pilcrow">¶</a></p>
 <p id="section-3.4-3">Active signals provide stronger assurance of client legitimacy, because the
 client or its operator positively asserts a property that the intermediary can
-verify. Examples include HTTP Message Signatures profiles such as
+verify. Examples include HTTP Message Signatures <span>[<a href="#RFC9421" class="cite xref">RFC9421</a>]</span> profiles such as
 <span>[<a href="#draft-meunier-webbotauth-httpsig-protocol" class="cite xref">draft-meunier-webbotauth-httpsig-protocol</a>]</span>, Privacy Pass tokens
 <span>[<a href="#RFC9577" class="cite xref">RFC9577</a>]</span>, published IP ranges as required by <span>[<a href="#CBCP" class="cite xref">CBCP</a>]</span>, and forward-confirmed
 reverse DNS.<a href="#section-3.4-3" class="pilcrow">¶</a></p>
@@ -1438,6 +1436,10 @@ industry adoption.<a href="#section-3.5-3" class="pilcrow">¶</a></p>
 <dt id="RFC9309">[RFC9309]</dt>
         <dd>
 <span class="refAuthor">Koster, M.</span>, <span class="refAuthor">Illyes, G.</span>, <span class="refAuthor">Zeller, H.</span>, and <span class="refAuthor">L. Sassman</span>, <span class="refTitle">"Robots Exclusion Protocol"</span>, <span class="seriesInfo">RFC 9309</span>, <span class="seriesInfo">DOI 10.17487/RFC9309</span>, <time datetime="2022-09" class="refDate">September 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9309">https://www.rfc-editor.org/rfc/rfc9309</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9421">[RFC9421]</dt>
+        <dd>
+<span class="refAuthor">Backman, A., Ed.</span>, <span class="refAuthor">Richer, J., Ed.</span>, and <span class="refAuthor">M. Sporny</span>, <span class="refTitle">"HTTP Message Signatures"</span>, <span class="seriesInfo">RFC 9421</span>, <span class="seriesInfo">DOI 10.17487/RFC9421</span>, <time datetime="2024-02" class="refDate">February 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9421">https://www.rfc-editor.org/rfc/rfc9421</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9577">[RFC9577]</dt>
       <dd>

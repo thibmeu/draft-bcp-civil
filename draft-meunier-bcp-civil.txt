@@ -99,8 +99,9 @@ Table of Contents
 
    The following terms are used throughout this document:
 
-   Active signal:  Client property positively asserted by the client or
-      its operator, and verifiable by the intermediary
+   Active signal:  Client property asserted by the client or its
+      operator, verifiable by the intermediary, and not assertable by an
+      unrelated party
 
    Passive signal:  Inferred/heuristic client property
 
@@ -124,8 +125,7 @@ Table of Contents
    3.  Intermediaries must favor open protocols for traffic management
        decisions
 
-   4.  Intermediaries must prefer positively identifiable signals over
-       passive fingerprinting
+   4.  Intermediaries must prefer active signals over passive signals
 
    5.  Intermediaries must document where their services diverge from
        published standards.
@@ -197,18 +197,18 @@ Table of Contents
 
 3.4.  Active signals over passive fingerprints
 
-   Intermediaries must prefer positively identifiable signals over
-   passive fingerprinting.
+   Intermediaries must prefer active signals over passive signals.
 
-   Passive fingerprinting techniques create false positives for users
-   sharing IP addresses, using privacy tools, or connecting from
-   networks with unusual characteristics.  These techniques also degrade
-   over time as clients change behavior or implement countermeasures.
+   Passive fingerprinting techniques identify users without their
+   participation, and create false positives for users sharing IP
+   addresses, using privacy tools, or connecting from networks with
+   unusual characteristics.  These techniques also degrade over time as
+   clients change behavior or implement countermeasures.
 
    Active signals provide stronger assurance of client legitimacy,
    because the client or its operator positively asserts a property that
    the intermediary can verify.  Examples include HTTP Message
-   Signatures profiles such as
+   Signatures [RFC9421] profiles such as
    [draft-meunier-webbotauth-httpsig-protocol], Privacy Pass tokens
    [RFC9577], published IP ranges as required by [CBCP], and forward-
    confirmed reverse DNS.
@@ -289,6 +289,10 @@ Table of Contents
               "Robots Exclusion Protocol", RFC 9309,
               DOI 10.17487/RFC9309, September 2022,
               <https://www.rfc-editor.org/rfc/rfc9309>.
+
+   [RFC9421]  Backman, A., Ed., Richer, J., Ed., and M. Sporny, "HTTP
+              Message Signatures", RFC 9421, DOI 10.17487/RFC9421,
+              February 2024, <https://www.rfc-editor.org/rfc/rfc9421>.
 
    [RFC9577]  Pauly, T., Valdez, S., and C. A. Wood, "The Privacy Pass
               HTTP Authentication Scheme", RFC 9577,
