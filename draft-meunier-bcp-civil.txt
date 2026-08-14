@@ -213,6 +213,10 @@ Table of Contents
    [RFC9577], published IP ranges as required by [CBCP], and forward-
    confirmed reverse DNS.
 
+   Note that what differs is not necessarily the data itself.  An
+   observed IP address is a passive signal, while the same address
+   published by its operator is an active signal.
+
 3.5.  Implementation transparency
 
    Intermediaries must document where their services diverge from
