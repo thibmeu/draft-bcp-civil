@@ -16,7 +16,7 @@ keyword:
  - traffic management
  - security
 venue:
-#  group: WG
+#  group: WG -- no idea which group this falls into
 #  type: Working Group
 #  mail: WG@example.com
 #  arch: https://example.com/WG
@@ -31,12 +31,15 @@ author:
 
 normative:
   RFC9110:
-  RFC9111:
 
 informative:
+  RFC9111:
   RFC9309:
-  draft-illyes-aipref-cbcp: I-D.draft-illyes-aipref-cbcp
+  RFC9421:
+  RFC9577:
+  CBCP: I-D.draft-illyes-webbotauth-cbcp
   draft-ietf-httpapi-ratelimit-headers: I-D.draft-ietf-httpapi-ratelimit-headers
+  draft-meunier-webbotauth-httpsig-protocol: I-D.draft-meunier-webbotauth-httpsig-protocol
 
 ...
 
@@ -66,7 +69,8 @@ preserve web accessibility while maintaining necessary protections.
 The following terms are used throughout this document:
 
 Active signal:
-: Cryptographically verifiable client property
+: Client property asserted by the client or its operator, verifiable by the
+  intermediary, and not assertable by an unrelated party
 
 Passive signal:
 : Inferred/heuristic client property
@@ -83,17 +87,17 @@ Intermediary:
 The following principles should be followed by web intermediaries to balance\
 security requirements with web openness:
 
-1. Intermediaries must classify traffic by specific behaviors, not client types
+1. Intermediaries must classify traffic by specific behaviors, not by client
+   identity
 2. Intermediaries must offer response options other than block or allow
 3. Intermediaries must favor open protocols for traffic management decisions
-4. Intermediaries must prefer cryptographically verifiable signals over passive
-   fingerprinting
+4. Intermediaries must prefer active signals over passive signals
 5. Intermediaries must document where their services diverge from published
    standards.
 
 ## Behavior-based classification
 
-Intermediaries must classify traffic by specific behaviors, not client types.
+Intermediaries must classify traffic by specific behaviors, not by client identity.
 
 Classifications based on inferred client types (such as "bot" or "automated")
 are unreliable as the distinction between human and automated web browsing
@@ -102,9 +106,14 @@ browsers themselves perform automated requests for prefetching, security
 scanning, and other legitimate purposes.
 
 Behavior-based classification focuses on observable actions that may indicate
-abuse, such as excessive request rates, unusual access patterns, or violation of
-website terms. This approach enables more precise enforcement while avoiding
-false positives based on client characteristics.
+abuse, such as excessive request rates, unusual access patterns, or failure to
+respect machine-readable signals such as caching directives {{RFC9111}} and the
+Robots Exclusion Protocol {{RFC9309}}. This approach enables more precise enforcement while avoiding false
+positives based on client characteristics.
+
+Policies applied to every client must be general, such as not causing adverse
+impact on the origin. More specific expectations apply according to the purpose
+a client declares, such as {{CBCP}} for crawlers.
 
 ## Graduated enforcement
 
@@ -145,17 +154,23 @@ for each vendor's proprietary system.
 
 ## Active signals over passive fingerprints
 
-Intermediaries must prefer client initiated signals over passive fingerprinting.
+Intermediaries must prefer active signals over passive signals.
 
-Passive fingerprinting techniques create false positives for users sharing IP
-addresses, using privacy tools, or connecting from networks with unusual
-characteristics. These techniques also degrade over time as clients change
-behavior or implement countermeasures.
+Passive fingerprinting techniques identify users without their participation, and
+create false positives for users sharing IP addresses, using privacy tools, or
+connecting from networks with unusual characteristics. These techniques also
+degrade over time as clients change behavior or implement countermeasures.
 
-Cryptographically verifiable credentials provide stronger assurance of client
-legitimacy while preserving user privacy. Examples include HTTP Message
-Signatures, Privacy Pass tokens, and other attestation mechanisms that prove
-client properties without revealing identifying information.
+Active signals provide stronger assurance of client legitimacy, because the
+client or its operator positively asserts a property that the intermediary can
+verify. Examples include HTTP Message Signatures {{RFC9421}} profiles such as
+{{draft-meunier-webbotauth-httpsig-protocol}}, Privacy Pass tokens
+{{RFC9577}}, published IP ranges as required by {{CBCP}}, and forward-confirmed
+reverse DNS.
+
+Note that what differs is not necessarily the data itself. An observed IP
+address is a passive signal, while the same address published by its operator is
+an active signal.
 
 ## Implementation transparency
 
