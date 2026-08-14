@@ -4,8 +4,8 @@
 
 Network Working Group                                         T. Meunier
 Internet-Draft                                                Cloudflare
-Intended status: Informational                             12 April 2026
-Expires: 14 October 2026
+Intended status: Informational                            14 August 2026
+Expires: 15 February 2027
 
 
         Principles for Web Traffic Management by Intermediaries
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 October 2026.
+   This Internet-Draft will expire on 15 February 2027.
 
 Copyright Notice
 
@@ -99,7 +99,8 @@ Table of Contents
 
    The following terms are used throughout this document:
 
-   Active signal:  Cryptographically verifiable client property
+   Active signal:  Client property positively asserted by the client or
+      its operator, and verifiable by the intermediary
 
    Passive signal:  Inferred/heuristic client property
 
@@ -115,7 +116,7 @@ Table of Contents
    balance\ security requirements with web openness:
 
    1.  Intermediaries must classify traffic by specific behaviors, not
-       client types
+       by client identity
 
    2.  Intermediaries must offer response options other than block or
        allow
@@ -123,16 +124,16 @@ Table of Contents
    3.  Intermediaries must favor open protocols for traffic management
        decisions
 
-   4.  Intermediaries must prefer cryptographically verifiable signals
-       over passive fingerprinting
+   4.  Intermediaries must prefer positively identifiable signals over
+       passive fingerprinting
 
    5.  Intermediaries must document where their services diverge from
        published standards.
 
 3.1.  Behavior-based classification
 
-   Intermediaries must classify traffic by specific behaviors, not
-   client types.
+   Intermediaries must classify traffic by specific behaviors, not by
+   client identity.
 
    Classifications based on inferred client types (such as "bot" or
    "automated") are unreliable as the distinction between human and
@@ -143,9 +144,15 @@ Table of Contents
 
    Behavior-based classification focuses on observable actions that may
    indicate abuse, such as excessive request rates, unusual access
-   patterns, or violation of website terms.  This approach enables more
-   precise enforcement while avoiding false positives based on client
-   characteristics.
+   patterns, or failure to respect machine-readable signals such as
+   caching directives [RFC9111] and the Robots Exclusion Protocol
+   [RFC9309].  This approach enables more precise enforcement while
+   avoiding false positives based on client characteristics.
+
+   Policies applied to every client must be general, such as not causing
+   adverse impact on the origin.  More specific expectations apply
+   according to the purpose a client declares, such as [CBCP] for
+   crawlers.
 
 3.2.  Graduated enforcement
 
@@ -190,19 +197,21 @@ Table of Contents
 
 3.4.  Active signals over passive fingerprints
 
-   Intermediaries must prefer client initiated signals over passive
-   fingerprinting.
+   Intermediaries must prefer positively identifiable signals over
+   passive fingerprinting.
 
    Passive fingerprinting techniques create false positives for users
    sharing IP addresses, using privacy tools, or connecting from
    networks with unusual characteristics.  These techniques also degrade
    over time as clients change behavior or implement countermeasures.
 
-   Cryptographically verifiable credentials provide stronger assurance
-   of client legitimacy while preserving user privacy.  Examples include
-   HTTP Message Signatures, Privacy Pass tokens, and other attestation
-   mechanisms that prove client properties without revealing identifying
-   information.
+   Active signals provide stronger assurance of client legitimacy,
+   because the client or its operator positively asserts a property that
+   the intermediary can verify.  Examples include HTTP Message
+   Signatures profiles such as
+   [draft-meunier-webbotauth-httpsig-protocol], Privacy Pass tokens
+   [RFC9577], published IP ranges as required by [CBCP], and forward-
+   confirmed reverse DNS.
 
 3.5.  Implementation transparency
 
@@ -245,31 +254,42 @@ Table of Contents
               DOI 10.17487/RFC9110, June 2022,
               <https://www.rfc-editor.org/rfc/rfc9110>.
 
+6.2.  Informative References
+
+   [CBCP]     Illyes, G., Kühlewind, M., and K. Aj, "Crawler best
+              practices", Work in Progress, Internet-Draft, draft-
+              illyes-webbotauth-cbcp-00, 21 April 2026,
+              <https://datatracker.ietf.org/doc/html/draft-illyes-
+              webbotauth-cbcp-00>.
+
+   [draft-ietf-httpapi-ratelimit-headers]
+              Polli, R., Ruiz, A. M., and D. Miller, "RateLimit header
+              fields for HTTP", Work in Progress, Internet-Draft, draft-
+              ietf-httpapi-ratelimit-headers-11, 23 May 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-httpapi-
+              ratelimit-headers-11>.
+
+   [draft-meunier-webbotauth-httpsig-protocol]
+              Meunier, T. and S. Major, "HTTP Message Signatures for
+              automated traffic", Work in Progress, Internet-Draft,
+              draft-meunier-webbotauth-httpsig-protocol-01, 5 August
+              2026, <https://datatracker.ietf.org/doc/html/draft-
+              meunier-webbotauth-httpsig-protocol-01>.
+
    [RFC9111]  Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
               Ed., "HTTP Caching", STD 98, RFC 9111,
               DOI 10.17487/RFC9111, June 2022,
               <https://www.rfc-editor.org/rfc/rfc9111>.
 
-6.2.  Informative References
-
-   [draft-ietf-httpapi-ratelimit-headers]
-              Polli, R., Ruiz, A. M., and D. Miller, "RateLimit header
-              fields for HTTP", Work in Progress, Internet-Draft, draft-
-              ietf-httpapi-ratelimit-headers-10, 27 September 2025,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-httpapi-
-              ratelimit-headers-10>.
-
-   [draft-illyes-aipref-cbcp]
-              Illyes, G., Kühlewind, M., and K. Aj, "Crawler best
-              practices", Work in Progress, Internet-Draft, draft-
-              illyes-aipref-cbcp-04, 9 April 2026,
-              <https://datatracker.ietf.org/doc/html/draft-illyes-
-              aipref-cbcp-04>.
-
    [RFC9309]  Koster, M., Illyes, G., Zeller, H., and L. Sassman,
               "Robots Exclusion Protocol", RFC 9309,
               DOI 10.17487/RFC9309, September 2022,
               <https://www.rfc-editor.org/rfc/rfc9309>.
+
+   [RFC9577]  Pauly, T., Valdez, S., and C. A. Wood, "The Privacy Pass
+              HTTP Authentication Scheme", RFC 9577,
+              DOI 10.17487/RFC9577, June 2024,
+              <https://www.rfc-editor.org/rfc/rfc9577>.
 
 Acknowledgments
 
