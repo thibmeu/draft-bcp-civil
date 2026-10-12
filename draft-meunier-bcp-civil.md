@@ -30,6 +30,7 @@ author:
     email: ot-ietf@thibault.uk
 
 normative:
+  RFC6585:
   RFC9110:
 
 informative:
@@ -39,7 +40,7 @@ informative:
   RFC9577:
   CBCP: I-D.draft-illyes-webbotauth-cbcp
   draft-ietf-httpapi-ratelimit-headers: I-D.draft-ietf-httpapi-ratelimit-headers
-  draft-meunier-webbotauth-httpsig-protocol: I-D.draft-meunier-webbotauth-httpsig-protocol
+  draft-ietf-webbotauth-httpsig-protocol: I-D.draft-ietf-webbotauth-httpsig-protocol
 
 ...
 
@@ -107,9 +108,10 @@ scanning, and other legitimate purposes.
 
 Behavior-based classification focuses on observable actions that may indicate
 abuse, such as excessive request rates, unusual access patterns, or failure to
-respect machine-readable signals such as caching directives {{RFC9111}} and the
-Robots Exclusion Protocol {{RFC9309}}. This approach enables more precise enforcement while avoiding false
-positives based on client characteristics.
+respect machine-readable signals such as caching directives {{RFC9111}} and,
+for crawlers, the Robots Exclusion Protocol {{RFC9309}}. This approach enables
+more precise enforcement while avoiding false positives based on client
+characteristics.
 
 Policies applied to every client must be general, such as not causing adverse
 impact on the origin. More specific expectations apply according to the purpose
@@ -117,20 +119,26 @@ a client declares, such as {{CBCP}} for crawlers.
 
 ## Graduated enforcement
 
-Intermediaries must default to allowing authenticated traffic, and offer
-response options other than block or allow.
+Intermediaries must default to allowing authenticated traffic, subject to origin
+access policy and behavior-based limits, and offer response options other than
+block or allow.
 
 Binary blocking decisions create unnecessary friction for legitimate users while
 failing to address the spectrum of potentially unwanted behavior. Graduated
 responses allow intermediaries to apply appropriate restrictions based on
 confidence levels and threat severity.
 
-Effective responses include rate limiting (HTTP 429 status code), request delays
-(HTTP 503 with Retry-After), content modification, and verification challenges.
+Effective responses include rate limiting (HTTP 429 status code), requests to
+retry after temporary overload (HTTP 503 with Retry-After), content modification,
+and verification challenges.
 Rate limiting implementations SHOULD follow emerging standards such as
 {{draft-ietf-httpapi-ratelimit-headers}} for consistent client communication.
 These responses can be applied progressively based on behavior patterns rather
 than defaulting to complete blocking for ambiguous cases.
+
+Challenges and content modification can prevent legitimate clients from
+processing a response. Intermediaries should offer recovery paths that do not
+depend on human interaction or a particular browser's capabilities.
 
 ## Protocol neutrality
 
@@ -142,11 +150,14 @@ client can implement, rather than proprietary systems or curated lists. This
 allows legitimate automated clients to identify themselves appropriately and
 follow established conventions for access control.
 
-When blocking or restricting access, intermediaries MUST use appropriate HTTP
-status codes as defined in {{RFC9110}}: 403 Forbidden for policy violations, 429
-Too Many Requests for rate limiting, and 503 Service Unavailable for temporary
-restrictions. Response headers SHOULD provide actionable information about
-restrictions and recovery paths.
+When responding to blocked or restricted requests, intermediaries MUST use
+appropriate HTTP status codes: 403 Forbidden for policy violations and 503
+Service Unavailable for temporary overload or maintenance, as defined in
+{{RFC9110}}, and 429 Too Many Requests for rate limiting, as defined in
+{{RFC6585}}. Response headers SHOULD provide actionable information about
+restrictions and recovery paths. For 429 and 503 responses, intermediaries SHOULD
+include Retry-After ({{Section 10.2.3 of RFC9110}}) when they can estimate when
+the client should retry.
 
 Open protocols enable website owners to express their preferences consistently
 across different intermediaries, rather than managing separate configurations
@@ -161,11 +172,11 @@ create false positives for users sharing IP addresses, using privacy tools, or
 connecting from networks with unusual characteristics. These techniques also
 degrade over time as clients change behavior or implement countermeasures.
 
-Active signals provide stronger assurance of client legitimacy, because the
+Active signals provide assurance about the asserted property, because the
 client or its operator positively asserts a property that the intermediary can
 verify. Examples include HTTP Message Signatures {{RFC9421}} profiles such as
-{{draft-meunier-webbotauth-httpsig-protocol}}, Privacy Pass tokens
-{{RFC9577}}, published IP ranges as required by {{CBCP}}, and forward-confirmed
+{{draft-ietf-webbotauth-httpsig-protocol}}, Privacy Pass tokens
+{{RFC9577}}, published IP ranges as recommended by {{CBCP}}, and forward-confirmed
 reverse DNS.
 
 Note that what differs is not necessarily the data itself. An observed IP
@@ -189,7 +200,23 @@ industry adoption.
 
 # Security Considerations
 
-TODO Security
+Authentication does not by itself establish authorization or harmless behavior.
+Authenticated clients remain subject to origin access policy and behavior-based
+limits. The preference for active signals does not require clients to identify
+themselves to access public resources.
+
+Client assertions can be spoofed. Intermediaries should verify active signals
+using the relevant mechanism, including the authenticity and integrity of
+published identity data, before using them in access decisions.
+
+Protecting availability can require immediate blocking or dropping connections;
+graduated enforcement does not require trying every response first
+({{Section 7.2 of RFC6585}}). Intermediaries should also limit the resources spent
+on signal verification and challenges.
+
+Active identifiers and passive fingerprints can enable tracking. Intermediaries
+should minimize the collection and retention of identifying data and prefer
+mechanisms that disclose only the property needed for a decision.
 
 
 # IANA Considerations
