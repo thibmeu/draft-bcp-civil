@@ -1,8 +1,8 @@
 <!-- regenerate: on (set to off if you edit this file) -->
 
-# Best practices for CDN traffic management
+# Principles for Web Traffic Management by Intermediaries
 
-This is the working area for the individual Internet-Draft, "Best practices for CDN traffic management".
+This is the working area for the individual Internet-Draft, "Principles for Web Traffic Management by Intermediaries".
 
 * [Editor's Copy](https://thibmeu.github.io/draft-bcp-civil/#go.draft-meunier-bcp-civil.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-meunier-bcp-civil)
@@ -13,7 +13,7 @@ This is the working area for the individual Internet-Draft, "Best practices for 
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/thibmeu/draft-bcp-civil/blob//CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/thibmeu/draft-bcp-civil/blob/main/CONTRIBUTING.md).
 
 The contributing file also has tips on how to make contributions, if you
 don't already know how to do that.
