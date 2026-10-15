@@ -4,8 +4,8 @@
 
 Network Working Group                                         T. Meunier
 Internet-Draft                                                Cloudflare
-Intended status: Informational                           12 October 2026
-Expires: 15 April 2027
+Intended status: Informational                           15 October 2026
+Expires: 18 April 2027
 
 
         Principles for Web Traffic Management by Intermediaries
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 April 2027.
+   This Internet-Draft will expire on 18 April 2027.
 
 Copyright Notice
 
@@ -140,7 +140,9 @@ Table of Contents
    automated web browsing continues to blur.  Modern web applications
    routinely use automation, and browsers themselves perform automated
    requests for prefetching, security scanning, and other legitimate
-   purposes.
+   purposes.  Human users can be represented by software, including
+   automated clients (Section 2 of [RFC8890]).  Representing a user
+   implies neither unconditional access nor an override of site policy.
 
    Behavior-based classification focuses on observable actions that may
    indicate abuse, such as excessive request rates, unusual access
@@ -150,21 +152,24 @@ Table of Contents
    while avoiding false positives based on client characteristics.
 
    Policies applied to every client must be general, such as not causing
-   adverse impact on the origin.  More specific expectations apply
+   adverse impact on the site.  More specific expectations apply
    according to the purpose a client declares, such as [CBCP] for
    crawlers.
 
 3.2.  Graduated enforcement
 
    Intermediaries must default to allowing authenticated traffic,
-   subject to origin access policy and behavior-based limits, and offer
+   subject to site access policy and behavior-based limits, and offer
    response options other than block or allow.
 
    Binary blocking decisions create unnecessary friction for legitimate
    users while failing to address the spectrum of potentially unwanted
    behavior.  Graduated responses allow intermediaries to apply
    appropriate restrictions based on confidence levels and threat
-   severity.
+   severity.  Intermediaries should narrowly target restrictions to the
+   relevant behavior, minimizing effects on unrelated users sharing
+   infrastructure, applying the scope and granularity considerations in
+   Section 4.1.1 of [RFC7754] and Section 4.1.2 of [RFC7754].
 
    Effective responses include rate limiting (HTTP 429 status code),
    requests to retry after temporary overload (HTTP 503 with Retry-
@@ -176,9 +181,12 @@ Table of Contents
    ambiguous cases.
 
    Challenges and content modification can prevent legitimate clients
-   from processing a response.  Intermediaries should offer recovery
-   paths that do not depend on human interaction or a particular
-   browser's capabilities.
+   from processing a response.  Where site policy otherwise permits
+   access, intermediaries should offer a documented recovery or
+   alternative access path that does not depend on human interaction or
+   a particular browser's capabilities.  Such a path does not guarantee
+   access and remains subject to the availability protections in
+   Section 4.
 
 3.3.  Protocol neutrality
 
@@ -226,6 +234,12 @@ Table of Contents
    observed IP address is a passive signal, while the same address
    published by its operator is an active signal.
 
+   Authentication and privacy-preserving tokens can improve traffic
+   management, but do not by themselves resolve how legitimate clients
+   without recognized credentials or supported challenge capabilities
+   are treated.  Absence of an active signal does not itself establish
+   abuse.
+
 3.5.  Implementation transparency
 
    Intermediaries must document where their services diverge from
@@ -238,15 +252,20 @@ Table of Contents
 
    While documenting every deviation may not be practical,
    intermediaries should prioritize disclosure in areas where they have
-   established published guidance.  Consistent disclosure demonstrates
-   accountability and encourages broader industry adoption.
+   established published guidance.
+
+   Where safe and feasible, intermediaries should distinguish explicit
+   site-policy denial from suspected abuse or temporary overload, and
+   provide operators enough information to investigate unintended
+   blocking.  This need not disclose detection rules or sensitive
+   signals.
 
 4.  Security Considerations
 
    Authentication does not by itself establish authorization or harmless
-   behavior.  Authenticated clients remain subject to origin access
-   policy and behavior-based limits.  The preference for active signals
-   does not require clients to identify themselves to access public
+   behavior.  Authenticated clients remain subject to site access policy
+   and behavior-based limits.  The preference for active signals does
+   not require clients to identify themselves to access public
    resources.
 
    Client assertions can be spoofed.  Intermediaries should verify
@@ -255,7 +274,7 @@ Table of Contents
    them in access decisions.
 
    Protecting availability can require immediate blocking or dropping
-   connections; graduated enforcement does not require trying every
+   connections.  Graduated enforcement does not require trying every
    response first (Section 7.2 of [RFC6585]).  Intermediaries should
    also limit the resources spent on signal verification and challenges.
 
@@ -311,6 +330,15 @@ Table of Contents
               draft-ietf-webbotauth-httpsig-protocol-00, 1 September
               2026, <https://datatracker.ietf.org/doc/html/draft-ietf-
               webbotauth-httpsig-protocol-00>.
+
+   [RFC7754]  Barnes, R., Cooper, A., Kolkman, O., Thaler, D., and E.
+              Nordmark, "Technical Considerations for Internet Service
+              Blocking and Filtering", RFC 7754, DOI 10.17487/RFC7754,
+              March 2016, <https://www.rfc-editor.org/rfc/rfc7754>.
+
+   [RFC8890]  Nottingham, M., "The Internet is for End Users", RFC 8890,
+              DOI 10.17487/RFC8890, August 2020,
+              <https://www.rfc-editor.org/rfc/rfc8890>.
 
    [RFC9111]  Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
               Ed., "HTTP Caching", STD 98, RFC 9111,
