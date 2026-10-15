@@ -34,6 +34,8 @@ normative:
   RFC9110:
 
 informative:
+  RFC7754:
+  RFC8890:
   RFC9111:
   RFC9309:
   RFC9421:
@@ -105,6 +107,9 @@ are unreliable as the distinction between human and automated web browsing
 continues to blur. Modern web applications routinely use automation, and
 browsers themselves perform automated requests for prefetching, security
 scanning, and other legitimate purposes.
+Human users can be represented by software, including automated clients
+({{Section 2 of RFC8890}}). Representing a user implies neither unconditional
+access nor an override of site policy.
 
 Behavior-based classification focuses on observable actions that may indicate
 abuse, such as excessive request rates, unusual access patterns, or failure to
@@ -114,12 +119,12 @@ more precise enforcement while avoiding false positives based on client
 characteristics.
 
 Policies applied to every client must be general, such as not causing adverse
-impact on the origin. More specific expectations apply according to the purpose
+impact on the site. More specific expectations apply according to the purpose
 a client declares, such as {{CBCP}} for crawlers.
 
 ## Graduated enforcement
 
-Intermediaries must default to allowing authenticated traffic, subject to origin
+Intermediaries must default to allowing authenticated traffic, subject to site
 access policy and behavior-based limits, and offer response options other than
 block or allow.
 
@@ -127,6 +132,10 @@ Binary blocking decisions create unnecessary friction for legitimate users while
 failing to address the spectrum of potentially unwanted behavior. Graduated
 responses allow intermediaries to apply appropriate restrictions based on
 confidence levels and threat severity.
+Intermediaries should narrowly target restrictions to the relevant behavior,
+minimizing effects on unrelated users sharing infrastructure, applying the scope
+and granularity considerations in {{Section 4.1.1 of RFC7754}} and
+{{Section 4.1.2 of RFC7754}}.
 
 Effective responses include rate limiting (HTTP 429 status code), requests to
 retry after temporary overload (HTTP 503 with Retry-After), content modification,
@@ -137,8 +146,11 @@ These responses can be applied progressively based on behavior patterns rather
 than defaulting to complete blocking for ambiguous cases.
 
 Challenges and content modification can prevent legitimate clients from
-processing a response. Intermediaries should offer recovery paths that do not
-depend on human interaction or a particular browser's capabilities.
+processing a response. Where site policy otherwise permits access,
+intermediaries should offer a documented recovery or alternative access path
+that does not depend on human interaction or a particular browser's capabilities.
+Such a path does not guarantee access and remains subject to the availability
+protections in {{security-considerations}}.
 
 ## Protocol neutrality
 
@@ -183,6 +195,11 @@ Note that what differs is not necessarily the data itself. An observed IP
 address is a passive signal, while the same address published by its operator is
 an active signal.
 
+Authentication and privacy-preserving tokens can improve traffic management,
+but do not by themselves resolve how legitimate clients without recognized
+credentials or supported challenge capabilities are treated. Absence of an
+active signal does not itself establish abuse.
+
 ## Implementation transparency
 
 Intermediaries must document where their services diverge from published
@@ -194,14 +211,17 @@ standard should disclose where its services do not follow it.
 
 While documenting every deviation may not be practical, intermediaries should
 prioritize disclosure in areas where they have established published guidance.
-Consistent disclosure demonstrates accountability and encourages broader
-industry adoption.
+
+Where safe and feasible, intermediaries should distinguish explicit site-policy
+denial from suspected abuse or temporary overload, and provide operators enough
+information to investigate unintended blocking. This need not disclose detection
+rules or sensitive signals.
 
 
-# Security Considerations
+# Security Considerations {#security-considerations}
 
 Authentication does not by itself establish authorization or harmless behavior.
-Authenticated clients remain subject to origin access policy and behavior-based
+Authenticated clients remain subject to site access policy and behavior-based
 limits. The preference for active signals does not require clients to identify
 themselves to access public resources.
 
@@ -209,8 +229,8 @@ Client assertions can be spoofed. Intermediaries should verify active signals
 using the relevant mechanism, including the authenticity and integrity of
 published identity data, before using them in access decisions.
 
-Protecting availability can require immediate blocking or dropping connections;
-graduated enforcement does not require trying every response first
+Protecting availability can require immediate blocking or dropping connections.
+Graduated enforcement does not require trying every response first
 ({{Section 7.2 of RFC6585}}). Intermediaries should also limit the resources spent
 on signal verification and challenges.
 
