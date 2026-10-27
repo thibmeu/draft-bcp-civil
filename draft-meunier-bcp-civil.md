@@ -28,6 +28,11 @@ author:
     fullname: Thibault Meunier
     organization: Cloudflare
     email: ot-ietf@thibault.uk
+ -
+    fullname: Kevin Kelly
+    organization: Anthropic
+    email: kelleyk-ietf@kelleyk.net
+
 
 normative:
   RFC6585:
