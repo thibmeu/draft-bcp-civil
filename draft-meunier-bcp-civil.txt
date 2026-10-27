@@ -4,8 +4,8 @@
 
 Network Working Group                                         T. Meunier
 Internet-Draft                                                Cloudflare
-Intended status: Informational                           15 October 2026
-Expires: 18 April 2027
+Intended status: Informational                           27 October 2026
+Expires: 30 April 2027
 
 
         Principles for Web Traffic Management by Intermediaries
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 April 2027.
+   This Internet-Draft will expire on 30 April 2027.
 
 Copyright Notice
 
@@ -173,7 +173,8 @@ Table of Contents
 
    Effective responses include rate limiting (HTTP 429 status code),
    requests to retry after temporary overload (HTTP 503 with Retry-
-   After), content modification, and verification challenges.  Rate
+   After), content modification per site policy (for instance, a summary
+   or lower-quality variant), and verification challenges.  Rate
    limiting implementations SHOULD follow emerging standards such as
    [draft-ietf-httpapi-ratelimit-headers] for consistent client
    communication.  These responses can be applied progressively based on
@@ -313,9 +314,9 @@ Table of Contents
 
    [CBCP]     Illyes, G., Kühlewind, M., and K. Aj, "Crawler best
               practices", Work in Progress, Internet-Draft, draft-
-              illyes-webbotauth-cbcp-00, 21 April 2026,
+              illyes-webbotauth-cbcp-01, 22 October 2026,
               <https://datatracker.ietf.org/doc/html/draft-illyes-
-              webbotauth-cbcp-00>.
+              webbotauth-cbcp-01>.
 
    [draft-ietf-httpapi-ratelimit-headers]
               Polli, R., Ruiz, A. M., and D. Miller, "RateLimit header

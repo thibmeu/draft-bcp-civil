@@ -24,11 +24,11 @@ needs with open web accessibility.
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.12.2
+    platformdirs 4.13.4
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
-    wcwidth 0.9.1
+    wcwidth 0.9.2
 -->
 <link href="draft-meunier-bcp-civil.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1048,7 +1048,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Meunier</td>
-<td class="center">Expires 18 April 2027</td>
+<td class="center">Expires 30 April 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1061,12 +1061,12 @@ svg {
 <dd class="internet-draft">draft-meunier-bcp-civil-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-10-15" class="published">15 October 2026</time>
+<time datetime="2026-10-27" class="published">27 October 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-04-18">18 April 2027</time></dd>
+<dd class="expires"><time datetime="2027-04-30">30 April 2027</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1112,7 +1112,7 @@ needs with open web accessibility.<a href="#section-abstract-1" class="pilcrow">
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 18 April 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 30 April 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1311,8 +1311,8 @@ minimizing effects on unrelated users sharing infrastructure, applying the scope
 and granularity considerations in <span><a href="https://rfc-editor.org/rfc/rfc7754#section-4.1.1" class="relref">Section 4.1.1</a> of [<a href="#RFC7754" class="cite xref">RFC7754</a>]</span> and
 <span><a href="https://rfc-editor.org/rfc/rfc7754#section-4.1.2" class="relref">Section 4.1.2</a> of [<a href="#RFC7754" class="cite xref">RFC7754</a>]</span>.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
 <p id="section-3.2-3">Effective responses include rate limiting (HTTP 429 status code), requests to
-retry after temporary overload (HTTP 503 with Retry-After), content modification,
-and verification challenges.
+retry after temporary overload (HTTP 503 with Retry-After), content modification
+per site policy (for instance, a summary or lower-quality variant), and verification challenges.
 Rate limiting implementations <span class="bcp14">SHOULD</span> follow emerging standards such as
 <span>[<a href="#draft-ietf-httpapi-ratelimit-headers" class="cite xref">draft-ietf-httpapi-ratelimit-headers</a>]</span> for consistent client communication.
 These responses can be applied progressively based on behavior patterns rather
@@ -1461,7 +1461,7 @@ mechanisms that disclose only the property needed for a decision.<a href="#secti
 <dl class="references">
 <dt id="CBCP">[CBCP]</dt>
         <dd>
-<span class="refAuthor">Illyes, G.</span>, <span class="refAuthor">Kühlewind, M.</span>, and <span class="refAuthor">K. Aj</span>, <span class="refTitle">"Crawler best practices"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-illyes-webbotauth-cbcp-00</span>, <time datetime="2026-04-21" class="refDate">21 April 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-illyes-webbotauth-cbcp-00">https://datatracker.ietf.org/doc/html/draft-illyes-webbotauth-cbcp-00</a>&gt;</span>. </dd>
+<span class="refAuthor">Illyes, G.</span>, <span class="refAuthor">Kühlewind, M.</span>, and <span class="refAuthor">K. Aj</span>, <span class="refTitle">"Crawler best practices"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-illyes-webbotauth-cbcp-01</span>, <time datetime="2026-10-22" class="refDate">22 October 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-illyes-webbotauth-cbcp-01">https://datatracker.ietf.org/doc/html/draft-illyes-webbotauth-cbcp-01</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="draft-ietf-httpapi-ratelimit-headers">[draft-ietf-httpapi-ratelimit-headers]</dt>
         <dd>
