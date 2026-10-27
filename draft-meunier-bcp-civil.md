@@ -138,8 +138,8 @@ and granularity considerations in {{Section 4.1.1 of RFC7754}} and
 {{Section 4.1.2 of RFC7754}}.
 
 Effective responses include rate limiting (HTTP 429 status code), requests to
-retry after temporary overload (HTTP 503 with Retry-After), content modification,
-and verification challenges.
+retry after temporary overload (HTTP 503 with Retry-After), content modification
+per site policy (for instance, a summary or lower-quality variant), and verification challenges.
 Rate limiting implementations SHOULD follow emerging standards such as
 {{draft-ietf-httpapi-ratelimit-headers}} for consistent client communication.
 These responses can be applied progressively based on behavior patterns rather
