@@ -4,8 +4,9 @@
 
 Network Working Group                                         T. Meunier
 Internet-Draft                                                Cloudflare
-Intended status: Informational                           27 October 2026
-Expires: 30 April 2027
+Intended status: Informational                                  K. Kelly
+Expires: 1 May 2027                                            Anthropic
+                                                         28 October 2026
 
 
         Principles for Web Traffic Management by Intermediaries
@@ -43,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 April 2027.
+   This Internet-Draft will expire on 1 May 2027.
 
 Copyright Notice
 
@@ -75,7 +76,7 @@ Table of Contents
      6.1.  Normative References
      6.2.  Informative References
    Acknowledgments
-   Author's Address
+   Authors' Addresses
 
 1.  Introduction
 
@@ -364,8 +365,13 @@ Acknowledgments
 
    TODO acknowledge.
 
-Author's Address
+Authors' Addresses
 
    Thibault Meunier
    Cloudflare
    Email: ot-ietf@thibault.uk
+
+
+   Kevin Kelly
+   Anthropic
+   Email: kelleyk-ietf@kelleyk.net
