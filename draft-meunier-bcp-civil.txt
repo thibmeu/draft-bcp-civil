@@ -5,8 +5,8 @@
 Network Working Group                                         T. Meunier
 Internet-Draft                                                Cloudflare
 Intended status: Informational                                  K. Kelly
-Expires: 1 May 2027                                            Anthropic
-                                                         28 October 2026
+Expires: 2 May 2027                                            Anthropic
+                                                         29 October 2026
 
 
         Principles for Web Traffic Management by Intermediaries
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 May 2027.
+   This Internet-Draft will expire on 2 May 2027.
 
 Copyright Notice
 
@@ -110,7 +110,8 @@ Table of Contents
 
    Intermediary:  As defined in Section 3.7 of [RFC9110], an HTTP
       intermediary is a proxy, gateway, or tunnel that acts on behalf of
-      either the client or server.
+      either the client or server.  This document also covers traffic
+      management services integrated into proxies or applications.
 
 3.  Principles
 
@@ -120,8 +121,7 @@ Table of Contents
    1.  Intermediaries must classify traffic by specific behaviors, not
        by client identity
 
-   2.  Intermediaries must offer response options other than block or
-       allow
+   2.  Intermediaries must offer options other than block or allow
 
    3.  Intermediaries must favor open protocols for traffic management
        decisions
@@ -159,9 +159,11 @@ Table of Contents
 
 3.2.  Graduated enforcement
 
-   Intermediaries must default to allowing authenticated traffic,
-   subject to site access policy and behavior-based limits, and offer
-   response options other than block or allow.
+   Intermediaries must allow traffic unless restrictions are required by
+   the policy of the operator they act for (client or server), or
+   necessary to protect availability (Section 4).  They must make the
+   policies they apply and their effects clear to that operator, and
+   offer options other than block or allow.
 
    Binary blocking decisions create unnecessary friction for legitimate
    users while failing to address the spectrum of potentially unwanted
