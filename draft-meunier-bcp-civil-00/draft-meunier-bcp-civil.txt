@@ -1,0 +1,379 @@
+
+
+
+
+Network Working Group                                         T. Meunier
+Internet-Draft                                                Cloudflare
+Intended status: Informational                                  K. Kelly
+Expires: 2 May 2027                                            Anthropic
+                                                         29 October 2026
+
+
+        Principles for Web Traffic Management by Intermediaries
+                     draft-meunier-bcp-civil-latest
+
+Abstract
+
+   This document describes principles for web intermediaries that
+   balance security needs with open web accessibility.
+
+About This Document
+
+   This note is to be removed before publishing as an RFC.
+
+   The latest revision of this draft can be found at
+   https://thibmeu.github.io/draft-bcp-civil/draft-meunier-bcp-
+   civil.html.  Status information for this document may be found at
+   https://datatracker.ietf.org/doc/draft-meunier-bcp-civil/.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/thibmeu/draft-bcp-civil.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 2 May 2027.
+
+Copyright Notice
+
+   Copyright (c) 2026 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction
+   2.  Conventions and Definitions
+   3.  Principles
+     3.1.  Behavior-based classification
+     3.2.  Graduated enforcement
+     3.3.  Protocol neutrality
+     3.4.  Active signals over passive fingerprints
+     3.5.  Implementation transparency
+   4.  Security Considerations
+   5.  IANA Considerations
+   6.  References
+     6.1.  Normative References
+     6.2.  Informative References
+   Acknowledgments
+   Authors' Addresses
+
+1.  Introduction
+
+   Web intermediaries such as content delivery networks, security
+   services, and edge platforms increasingly implement traffic
+   management systems to protect against abuse.  As these systems become
+   more sophisticated, there is growing concern about their impact on
+   legitimate users and the open nature of the web.
+
+   This document establishes principles for responsible traffic
+   management that preserve web accessibility while maintaining
+   necessary protections.
+
+2.  Conventions and Definitions
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in
+   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+   The following terms are used throughout this document:
+
+   Active signal:  Client property asserted by the client or its
+      operator, verifiable by the intermediary, and not assertable by an
+      unrelated party
+
+   Passive signal:  Inferred/heuristic client property
+
+   Graduated response:  Configurable action spectrum
+
+   Intermediary:  As defined in Section 3.7 of [RFC9110], an HTTP
+      intermediary is a proxy, gateway, or tunnel that acts on behalf of
+      either the client or server.  This document also covers traffic
+      management services integrated into proxies or applications.
+
+3.  Principles
+
+   The following principles should be followed by web intermediaries to
+   balance\ security requirements with web openness:
+
+   1.  Intermediaries must classify traffic by specific behaviors, not
+       by client identity
+
+   2.  Intermediaries must offer options other than block or allow
+
+   3.  Intermediaries must favor open protocols for traffic management
+       decisions
+
+   4.  Intermediaries must prefer active signals over passive signals
+
+   5.  Intermediaries must document where their services diverge from
+       published standards.
+
+3.1.  Behavior-based classification
+
+   Intermediaries must classify traffic by specific behaviors, not by
+   client identity.
+
+   Classifications based on inferred client types (such as "bot" or
+   "automated") are unreliable as the distinction between human and
+   automated web browsing continues to blur.  Modern web applications
+   routinely use automation, and browsers themselves perform automated
+   requests for prefetching, security scanning, and other legitimate
+   purposes.  Human users can be represented by software, including
+   automated clients (Section 2 of [RFC8890]).  Representing a user
+   implies neither unconditional access nor an override of site policy.
+
+   Behavior-based classification focuses on observable actions that may
+   indicate abuse, such as excessive request rates, unusual access
+   patterns, or failure to respect machine-readable signals such as
+   caching directives [RFC9111] and, for crawlers, the Robots Exclusion
+   Protocol [RFC9309].  This approach enables more precise enforcement
+   while avoiding false positives based on client characteristics.
+
+   Policies applied to every client must be general, such as not causing
+   adverse impact on the site.  More specific expectations apply
+   according to the purpose a client declares, such as [CBCP] for
+   crawlers.
+
+3.2.  Graduated enforcement
+
+   Intermediaries must allow traffic unless restrictions are required by
+   the policy of the operator they act for (client or server), or
+   necessary to protect availability (Section 4).  They must make the
+   policies they apply and their effects clear to that operator, and
+   offer options other than block or allow.
+
+   Binary blocking decisions create unnecessary friction for legitimate
+   users while failing to address the spectrum of potentially unwanted
+   behavior.  Graduated responses allow intermediaries to apply
+   appropriate restrictions based on confidence levels and threat
+   severity.  Intermediaries should narrowly target restrictions to the
+   relevant behavior, minimizing effects on unrelated users sharing
+   infrastructure, applying the scope and granularity considerations in
+   Section 4.1.1 of [RFC7754] and Section 4.1.2 of [RFC7754].
+
+   Effective responses include rate limiting (HTTP 429 status code),
+   requests to retry after temporary overload (HTTP 503 with Retry-
+   After), content modification per site policy (for instance, a summary
+   or lower-quality variant), and verification challenges.  Rate
+   limiting implementations SHOULD follow emerging standards such as
+   [draft-ietf-httpapi-ratelimit-headers] for consistent client
+   communication.  These responses can be applied progressively based on
+   behavior patterns rather than defaulting to complete blocking for
+   ambiguous cases.
+
+   Challenges and content modification can prevent legitimate clients
+   from processing a response.  Where site policy otherwise permits
+   access, intermediaries should offer a documented recovery or
+   alternative access path that does not depend on human interaction or
+   a particular browser's capabilities.  Such a path does not guarantee
+   access and remains subject to the availability protections in
+   Section 4.
+
+3.3.  Protocol neutrality
+
+   Intermediaries must favor open protocols for traffic management
+   decisions and communicate responses using standard HTTP semantics.
+
+   Traffic management decisions should be based on standardized
+   mechanisms that any client can implement, rather than proprietary
+   systems or curated lists.  This allows legitimate automated clients
+   to identify themselves appropriately and follow established
+   conventions for access control.
+
+   When responding to blocked or restricted requests, intermediaries
+   MUST use appropriate HTTP status codes: 403 Forbidden for policy
+   violations and 503 Service Unavailable for temporary overload or
+   maintenance, as defined in [RFC9110], and 429 Too Many Requests for
+   rate limiting, as defined in [RFC6585].  Response headers SHOULD
+   provide actionable information about restrictions and recovery paths.
+   For 429 and 503 responses, intermediaries SHOULD include Retry-After
+   (Section 10.2.3 of [RFC9110]) when they can estimate when the client
+   should retry.
+
+   Open protocols enable website owners to express their preferences
+   consistently across different intermediaries, rather than managing
+   separate configurations for each vendor's proprietary system.
+
+3.4.  Active signals over passive fingerprints
+
+   Intermediaries must prefer active signals over passive signals.
+
+   Passive fingerprinting techniques identify users without their
+   participation, and create false positives for users sharing IP
+   addresses, using privacy tools, or connecting from networks with
+   unusual characteristics.  These techniques also degrade over time as
+   clients change behavior or implement countermeasures.
+
+   Active signals provide assurance about the asserted property, because
+   the client or its operator positively asserts a property that the
+   intermediary can verify.  Examples include HTTP Message Signatures
+   [RFC9421] profiles such as [draft-ietf-webbotauth-httpsig-protocol],
+   Privacy Pass tokens [RFC9577], published IP ranges as recommended by
+   [CBCP], and forward-confirmed reverse DNS.
+
+   Note that what differs is not necessarily the data itself.  An
+   observed IP address is a passive signal, while the same address
+   published by its operator is an active signal.
+
+   Authentication and privacy-preserving tokens can improve traffic
+   management, but do not by themselves resolve how legitimate clients
+   without recognized credentials or supported challenge capabilities
+   are treated.  Absence of an active signal does not itself establish
+   abuse.
+
+3.5.  Implementation transparency
+
+   Intermediaries must document where their services diverge from
+   published standards.
+
+   Intermediaries that develop or promote standards operate multiple
+   services that may implement those standards differently.  An
+   intermediary that promotes a standard should disclose where its
+   services do not follow it.
+
+   While documenting every deviation may not be practical,
+   intermediaries should prioritize disclosure in areas where they have
+   established published guidance.
+
+   Where safe and feasible, intermediaries should distinguish explicit
+   site-policy denial from suspected abuse or temporary overload, and
+   provide operators enough information to investigate unintended
+   blocking.  This need not disclose detection rules or sensitive
+   signals.
+
+4.  Security Considerations
+
+   Authentication does not by itself establish authorization or harmless
+   behavior.  Authenticated clients remain subject to site access policy
+   and behavior-based limits.  The preference for active signals does
+   not require clients to identify themselves to access public
+   resources.
+
+   Client assertions can be spoofed.  Intermediaries should verify
+   active signals using the relevant mechanism, including the
+   authenticity and integrity of published identity data, before using
+   them in access decisions.
+
+   Protecting availability can require immediate blocking or dropping
+   connections.  Graduated enforcement does not require trying every
+   response first (Section 7.2 of [RFC6585]).  Intermediaries should
+   also limit the resources spent on signal verification and challenges.
+
+   Active identifiers and passive fingerprints can enable tracking.
+   Intermediaries should minimize the collection and retention of
+   identifying data and prefer mechanisms that disclose only the
+   property needed for a decision.
+
+5.  IANA Considerations
+
+   This document has no IANA actions.
+
+6.  References
+
+6.1.  Normative References
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC6585]  Nottingham, M. and R. Fielding, "Additional HTTP Status
+              Codes", RFC 6585, DOI 10.17487/RFC6585, April 2012,
+              <https://www.rfc-editor.org/rfc/rfc6585>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+   [RFC9110]  Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
+              Ed., "HTTP Semantics", STD 97, RFC 9110,
+              DOI 10.17487/RFC9110, June 2022,
+              <https://www.rfc-editor.org/rfc/rfc9110>.
+
+6.2.  Informative References
+
+   [CBCP]     Illyes, G., Kühlewind, M., and K. Aj, "Crawler best
+              practices", Work in Progress, Internet-Draft, draft-
+              illyes-webbotauth-cbcp-01, 22 October 2026,
+              <https://datatracker.ietf.org/doc/html/draft-illyes-
+              webbotauth-cbcp-01>.
+
+   [draft-ietf-httpapi-ratelimit-headers]
+              Polli, R., Ruiz, A. M., and D. Miller, "RateLimit header
+              fields for HTTP", Work in Progress, Internet-Draft, draft-
+              ietf-httpapi-ratelimit-headers-11, 23 May 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-httpapi-
+              ratelimit-headers-11>.
+
+   [draft-ietf-webbotauth-httpsig-protocol]
+              Meunier, T. and S. Major, "HTTP Message Signatures for
+              automated traffic", Work in Progress, Internet-Draft,
+              draft-ietf-webbotauth-httpsig-protocol-00, 1 September
+              2026, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              webbotauth-httpsig-protocol-00>.
+
+   [RFC7754]  Barnes, R., Cooper, A., Kolkman, O., Thaler, D., and E.
+              Nordmark, "Technical Considerations for Internet Service
+              Blocking and Filtering", RFC 7754, DOI 10.17487/RFC7754,
+              March 2016, <https://www.rfc-editor.org/rfc/rfc7754>.
+
+   [RFC8890]  Nottingham, M., "The Internet is for End Users", RFC 8890,
+              DOI 10.17487/RFC8890, August 2020,
+              <https://www.rfc-editor.org/rfc/rfc8890>.
+
+   [RFC9111]  Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
+              Ed., "HTTP Caching", STD 98, RFC 9111,
+              DOI 10.17487/RFC9111, June 2022,
+              <https://www.rfc-editor.org/rfc/rfc9111>.
+
+   [RFC9309]  Koster, M., Illyes, G., Zeller, H., and L. Sassman,
+              "Robots Exclusion Protocol", RFC 9309,
+              DOI 10.17487/RFC9309, September 2022,
+              <https://www.rfc-editor.org/rfc/rfc9309>.
+
+   [RFC9421]  Backman, A., Ed., Richer, J., Ed., and M. Sporny, "HTTP
+              Message Signatures", RFC 9421, DOI 10.17487/RFC9421,
+              February 2024, <https://www.rfc-editor.org/rfc/rfc9421>.
+
+   [RFC9577]  Pauly, T., Valdez, S., and C. A. Wood, "The Privacy Pass
+              HTTP Authentication Scheme", RFC 9577,
+              DOI 10.17487/RFC9577, June 2024,
+              <https://www.rfc-editor.org/rfc/rfc9577>.
+
+Acknowledgments
+
+   TODO acknowledge.
+
+Authors' Addresses
+
+   Thibault Meunier
+   Cloudflare
+   Email: ot-ietf@thibault.uk
+
+
+   Kevin Kelly
+   Anthropic
+   Email: kelleyk-ietf@kelleyk.net
