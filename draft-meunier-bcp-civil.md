@@ -89,6 +89,8 @@ Graduated response:
 Intermediary:
 : As defined in {{Section 3.7 of RFC9110}}, an HTTP intermediary is a proxy,
   gateway, or tunnel that acts on behalf of either the client or server.
+  This document also covers traffic management services integrated into proxies
+  or applications.
 
 # Principles
 
@@ -97,7 +99,7 @@ security requirements with web openness:
 
 1. Intermediaries must classify traffic by specific behaviors, not by client
    identity
-2. Intermediaries must offer response options other than block or allow
+2. Intermediaries must offer options other than block or allow
 3. Intermediaries must favor open protocols for traffic management decisions
 4. Intermediaries must prefer active signals over passive signals
 5. Intermediaries must document where their services diverge from published
@@ -129,8 +131,10 @@ a client declares, such as {{CBCP}} for crawlers.
 
 ## Graduated enforcement
 
-Intermediaries must default to allowing authenticated traffic, subject to site
-access policy and behavior-based limits, and offer response options other than
+Intermediaries must allow traffic unless restrictions are required by the
+policy of the operator they act for (client or server), or necessary to protect
+availability ({{security-considerations}}). They must make the policies they
+apply and their effects clear to that operator, and offer options other than
 block or allow.
 
 Binary blocking decisions create unnecessary friction for legitimate users while
